@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APlayer Example</title>
+    <!-- 引入 APlayer CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <style>
+        /* 设置整个页面的背景图片 */
+        body {
+            background-image: url('1.jpg'); 
+            background-size: cover; /* 背景图片覆盖整个页面 */
+        }
+    </style>
+</head>
+<body>
+
+<!-- 添加播放器容器 -->
+<div id="aplayer"></div>
+
+<!-- 引入 APlayer JavaScript 库 -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+
+<script>
+    // 使用 JavaScript 初始化 APlayer
+    const ap = new APlayer({
+        container: document.getElementById('aplayer'), // 指定播放器容器
+        autoPlay: true, // 是否自动播放，根据需要设置为 true 或 false
+        listFolded: false, // 列表是否折叠
+        fixed:true,
+        audio: [
+            {
+                name: '纵情欢愉', // 歌曲名称
+                artist: '享受此刻', // 歌手名称
+                url: 'bar.mp3', // 音乐文件的 URL 地址
+                cover: 'enjoy.jpg', // 封面图片的 URL 地址
+            },
+            // 可以根据需要添加更多歌曲
+        ],
+    });
+</script>
+
+</body>
+</html>
