@@ -7,15 +7,76 @@
     <!-- 引入 APlayer CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
     <style>
-        /* 设置整个页面的背景图片 */
         body {
-            background-image: url('1.jpg'); 
-            background-size: cover; /* 背景图片覆盖整个页面 */
+  background-image: url('bar.jpg');
+  background-size: cover;
+  background-position: center 60%; /* 水平居中, 垂直位置稍微向下调整 */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* 背景图在页面滚动时保持固定 */
+  background-color: #000; /* 背景颜色 */
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+
+
+        
+    
+        h1 {
+          text-align: center;
+          margin-top: 50px;
+          font-size: 36px;
+          letter-spacing: 2px;
         }
-    </style>
+    
+        .container {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 50px;
+          text-align: center;
+        }
+    
+        .menu {
+          margin-top: 50px;
+          font-size: 24px;
+        }
+    
+        .menu-item {
+          display: inline-block;
+          margin-right: 20px;
+          padding: 10px;
+          background-color: #333;
+          border-radius: 10px;
+          text-decoration: none;
+          color: #fff;
+          transition: background-color 0.3s ease;
+        }
+    
+        .menu-item:hover {
+          background-color: #555;
+        }
+    
+        .footer {
+          margin-top: 50px;
+          text-align: center;
+          font-size: 18px;
+        }
+      </style>
 </head>
 <body>
-
+    <h1>欢迎来到赛博酒吧</h1>
+    <div class="container">
+      <p>这是一个充满未来感的酒吧，我们提供各种独特的饮品和体验。</p>
+      <div class="menu">
+        <a href="#" class="menu-item">赛博可乐</a>
+        <a href="#" class="menu-item">电子鸡尾酒</a>
+        <a href="#" class="menu-item">机械啤酒</a>
+      </div>
+      <p>我们的营业时间为每天下午4点至凌晨2点，期待您的光临。</p>
+    </div>
+    <div class="footer">
+      <p>&copy; 2023 赛博酒吧</p>
+    </div>
 <!-- 添加播放器容器 -->
 <div id="aplayer"></div>
 
