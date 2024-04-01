@@ -24,15 +24,15 @@
     
         h1 {
           text-align: center;
-          margin-top: 50px;
+          margin-top: 70px;
           font-size: 36px;
           letter-spacing: 2px;
         }
-    
+        
         .container {
           max-width: 800px;
           margin: 0 auto;
-          padding: 50px;
+          padding: 200px 180px 200px 180px;
           text-align: center;
         }
     
@@ -42,41 +42,114 @@
         }
     
         .menu-item {
-          display: inline-block;
-          margin-right: 20px;
-          padding: 10px;
-          background-color: #333;
-          border-radius: 10px;
-          text-decoration: none;
-          color: #fff;
-          transition: background-color 0.3s ease;
-        }
-    
-        .menu-item:hover {
-          background-color: #555;
-        }
+    display: inline-block;
+    margin-right: 20px;
+    padding: 10px 20px; /* 增加左右填充以使按钮看起来更宽 */
+    background-color: #333;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2); /* 添加半透明边框 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加轻微阴影 */
+    transition: all 0.3s ease; /* 平滑过渡所有变化 */
+    font-size: 18px; /* 增加字体大小 */
+    font-weight: bold; /* 文字加粗 */
+}
+
+.menu-item:hover {
+    background-color: #555;
+    border-color: rgba(255, 255, 255, 0.5); /* 鼠标悬停时边框更亮 */
+    transform: translateY(-2px); /* 轻微上移以产生点击效果 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 鼠标悬停时增加阴影 */
+}
+.menu-item.active {
+    background-color: #777; /* 活动项背景色 */
+    border-color: #fff; /* 活动项边框色 */
+}
+
     
         .footer {
           margin-top: 50px;
           text-align: center;
           font-size: 18px;
         }
+        #checkbox {
+          display: none;
+        }
+
+        .switch {
+          position: relative;
+          width: 70px;
+          height: 70px;
+          background-color: rgb(99, 99, 99);
+          border-radius: 50%;
+          z-index: 1;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid rgb(126, 126, 126);
+          box-shadow: 0px 0px 3px rgb(2, 2, 2) inset;
+        }
+        .switch svg {
+          width: 1.2em;
+        }
+        .switch svg path {
+          fill: rgb(48, 48, 48);
+        }
+        #checkbox:checked + .switch {
+          box-shadow: 0px 0px 1px rgb(151, 243, 255) inset,
+            0px 0px 2px rgb(151, 243, 255) inset, 0px 0px 10px rgb(151, 243, 255) inset,
+            0px 0px 40px rgb(151, 243, 255), 0px 0px 100px rgb(151, 243, 255),
+            0px 0px 5px rgb(151, 243, 255);
+          border: 2px solid rgb(255, 255, 255);
+          background-color: rgb(146, 180, 184);
+        }
+        #checkbox:checked + .switch svg {
+          filter: drop-shadow(0px 0px 5px rgb(151, 243, 255));
+        }
+        #checkbox:checked + .switch svg path {
+          fill: rgb(255, 255, 255);
+        }
+        
+
       </style>
 </head>
 <body>
     <h1>欢迎来到赛博酒吧</h1>
+    <audio id="backgroundMusic" loop>
+      <source src="bar.mp3" type="audio/mp3">
+      您的浏览器不支持音频标签。
+  </audio>
+    <input id="checkbox" type="checkbox" />
+<label class="switch" for="checkbox">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
+    <path
+      d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
+    ></path>
+  </svg>
+</label>
+
     <div class="container">
       <p>这是一个充满未来感的酒吧，我们提供各种独特的饮品和体验。</p>
       <div class="menu">
-        <a href="#" class="menu-item">赛博可乐</a>
-        <a href="#" class="menu-item">电子鸡尾酒</a>
-        <a href="#" class="menu-item">机械啤酒</a>
+        <a href="#" class="menu-item">Item-1</a>
+        <a href="#" class="menu-item">Item-2</a>
+        <a href="#" class="menu-item">Item-3</a>
       </div>
       <p>我们的营业时间为每天下午4点至凌晨2点，期待您的光临。</p>
+      <p>下面是我们的留言墙，期待您在此刻镌刻下您的回忆。或喜或悲，多年之后俱已成过往。</p>
+      <p>到那时，回望过往，你便能窥见过去的一角。</p>
     </div>
-    <div class="footer">
-      <p>&copy; 2023 赛博酒吧</p>
-    </div>
+    <!-- <div id="commentSection">
+      <h2>留言板</h2>
+      <textarea id="commentInput" placeholder="输入您的留言"></textarea>
+      <button onclick="submitComment()">留言</button>
+      <div id="commentsContainer"></div>
+    </div>     -->
+    
+    
 <!-- 添加播放器容器 -->
 <div id="aplayer"></div>
 
@@ -92,7 +165,7 @@
         fixed:true,
         audio: [
             {
-                name: '纵情欢愉', // 歌曲名称
+                name: '惊梦剧场', // 歌曲名称
                 artist: '享受此刻', // 歌手名称
                 url: 'bar.mp3', // 音乐文件的 URL 地址
                 cover: 'enjoy.jpg', // 封面图片的 URL 地址
