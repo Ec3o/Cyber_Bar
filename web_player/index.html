@@ -7,173 +7,264 @@
     <!-- 引入 APlayer CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
     <style>
-        body {
-  background-image: url('bar.jpg');
-  background-size: cover;
-  background-position: center 60%; /* 水平居中, 垂直位置稍微向下调整 */
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* 背景图在页面滚动时保持固定 */
-  background-color: #000; /* 背景颜色 */
+        .form-container {
+  width: 400px;
+  background: linear-gradient(#212121, #212121) padding-box,
+              linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+  border: 2px solid transparent;
+  padding: 32px 24px;
+  font-size: 14px;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+
+.form-container button:active {
+  scale: 0.95;
+}
+
+.form-container .form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-container .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-sizing: border-box; /* 添加这一行 */
+}
+
+.form-container .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #717171;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.form-container .form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: inherit;
+  background-color: transparent;
+  border: 1px solid #414141;
+  box-sizing: border-box; /* 添加这一行 */
+}
+
+.form-container .form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  resize: none;
+  color: #fff;
+  height: 96px;
+  border: 1px solid #414141;
+  background-color: transparent;
+  font-family: inherit;
+  box-sizing: border-box; /* 添加这一行 */
+}
+
+.form-container .form-group input::placeholder {
+  opacity: 0.5;
+}
+
+.form-container .form-group input:focus {
+  outline: none;
+  border-color: #e81cff;
+}
+
+.form-container .form-group textarea:focus {
+  outline: none;
+  border-color: #e81cff;
+}
+
+.form-container .form-submit-btn {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: flex-start;
+  font-family: inherit;
+  color: #717171;
+  font-weight: 600;
+  width: 40%;
+  background: #313131;
+  border: 1px solid #414141;
+  padding: 12px 16px;
+  font-size: inherit;
+  gap: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.form-container .form-submit-btn:hover {
+  background-color: #fff;
+  border-color: #fff;
+}
+.form-mask {
+  display: none; /* 默认隐藏 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+  z-index: 1000; /* 确保遮罩层位于顶部 */
+}
+.form-container {
+  display: none; /* 默认隐藏 */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* 通过变换实现完全居中 */
+  z-index: 1001; /* 确保表单在遮罩层之上 */
+}
+.form-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 
 
-        
-    
         h1 {
           text-align: center;
           margin-top: 70px;
           font-size: 36px;
           letter-spacing: 2px;
         }
+        body {
+            background-image: url('bar.jpg');
+            background-size: cover;
+            background-position: center 60%; /* 水平居中, 垂直位置稍微向下调整 */
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* 背景图在页面滚动时保持固定 */
+            background-color: #000; /* 背景颜色 */
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
         
         .container {
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 200px 180px 200px 180px;
-          text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 200px 180px 200px 180px;
+            text-align: center;
         }
-    
+
         .menu {
-          margin-top: 50px;
-          font-size: 24px;
+            margin-top: 50px;
+            font-size: 24px;
         }
-    
+
         .menu-item {
-    display: inline-block;
-    margin-right: 20px;
-    padding: 10px 20px; /* 增加左右填充以使按钮看起来更宽 */
-    background-color: #333;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #fff;
-    transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.2); /* 添加半透明边框 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加轻微阴影 */
-    transition: all 0.3s ease; /* 平滑过渡所有变化 */
-    font-size: 18px; /* 增加字体大小 */
-    font-weight: bold; /* 文字加粗 */
-}
-
-.menu-item:hover {
-    background-color: #555;
-    border-color: rgba(255, 255, 255, 0.5); /* 鼠标悬停时边框更亮 */
-    transform: translateY(-2px); /* 轻微上移以产生点击效果 */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 鼠标悬停时增加阴影 */
-}
-.menu-item.active {
-    background-color: #777; /* 活动项背景色 */
-    border-color: #fff; /* 活动项边框色 */
-}
-
-    
-        .footer {
-          margin-top: 50px;
-          text-align: center;
-          font-size: 18px;
-        }
-        #checkbox {
-          display: none;
+            display: inline-block;
+            margin-right: 20px;
+            padding: 10px 20px; /* 增加左右填充以使按钮看起来更宽 */
+            background-color: #333;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2); /* 添加半透明边框 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加轻微阴影 */
+            transition: all 0.3s ease; /* 平滑过渡所有变化 */
+            font-size: 18px; /* 增加字体大小 */
+            font-weight: bold; /* 文字加粗 */
         }
 
-        .switch {
-          position: relative;
-          width: 70px;
-          height: 70px;
-          background-color: rgb(99, 99, 99);
-          border-radius: 50%;
-          z-index: 1;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 2px solid rgb(126, 126, 126);
-          box-shadow: 0px 0px 3px rgb(2, 2, 2) inset;
+        .form-container {
+            display: none; /* 默认隐藏表单 */
         }
-        .switch svg {
-          width: 1.2em;
-        }
-        .switch svg path {
-          fill: rgb(48, 48, 48);
-        }
-        #checkbox:checked + .switch {
-          box-shadow: 0px 0px 1px rgb(151, 243, 255) inset,
-            0px 0px 2px rgb(151, 243, 255) inset, 0px 0px 10px rgb(151, 243, 255) inset,
-            0px 0px 40px rgb(151, 243, 255), 0px 0px 100px rgb(151, 243, 255),
-            0px 0px 5px rgb(151, 243, 255);
-          border: 2px solid rgb(255, 255, 255);
-          background-color: rgb(146, 180, 184);
-        }
-        #checkbox:checked + .switch svg {
-          filter: drop-shadow(0px 0px 5px rgb(151, 243, 255));
-        }
-        #checkbox:checked + .switch svg path {
-          fill: rgb(255, 255, 255);
-        }
-        
-
-      </style>
+    </style>
 </head>
 <body>
     <h1>欢迎来到赛博酒吧</h1>
-    <audio id="backgroundMusic" loop>
-      <source src="bar.mp3" type="audio/mp3">
-      您的浏览器不支持音频标签。
-  </audio>
-    <input id="checkbox" type="checkbox" />
-<label class="switch" for="checkbox">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="slider">
-    <path
-      d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"
-    ></path>
-  </svg>
-</label>
-
     <div class="container">
-      <p>这是一个充满未来感的酒吧，我们提供各种独特的饮品和体验。</p>
-      <div class="menu">
-        <a href="#" class="menu-item">Item-1</a>
-        <a href="#" class="menu-item">Item-2</a>
-        <a href="#" class="menu-item">Item-3</a>
-      </div>
-      <p>我们的营业时间为每天下午4点至凌晨2点，期待您的光临。</p>
-      <p>下面是我们的留言墙，期待您在此刻镌刻下您的回忆。或喜或悲，多年之后俱已成过往。</p>
-      <p>到那时，回望过往，你便能窥见过去的一角。</p>
+        <p>这是一个充满未来感的酒吧，我们提供各种独特的饮品和体验。</p>
+        <div class="menu">
+            <a href="?select=menu" class="menu-item">来点灵感？</a>
+            <a href="?select=free" class="menu-item">肆意涂鸦？</a>
+            <a href="?select=memories" class="menu-item" id="memoriesLink">留下记忆:)</a>
+        </div>
+        <p>我们的营业时间为每天下午4点至凌晨2点，期待您的光临。</p>
+        <p>下面是我们的留言墙，期待您在此刻镌刻下您的回忆。或喜或悲，多年之后俱已成过往。</p>
+        <p>到那时，回望过往，你便能窥见过去的一角。</p>
     </div>
-    <!-- <div id="commentSection">
-      <h2>留言板</h2>
-      <textarea id="commentInput" placeholder="输入您的留言"></textarea>
-      <button onclick="submitComment()">留言</button>
-      <div id="commentsContainer"></div>
-    </div>     -->
-    
-    
-<!-- 添加播放器容器 -->
-<div id="aplayer"></div>
+    <div id="aplayer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <div class="form-mask" id="formMask"></div>
+    <div class="form-container">
+        <form class="form">
+            <button class="form-close-btn" type="button">X</button>
+            <div class="form-group">
+                <label for="email">你希望自己被称为？</label>
+                <input type="text" id="email" name="email" required="">
+            </div>
+            <div class="form-group">
+                <label for="textarea">你想留下什么？</label>
+                <textarea name="textarea" id="textarea" rows="10" cols="50" required=""></textarea>
+            </div>
+            <button class="form-submit-btn" type="submit">Submit</button>
+        </form>
+    </div>
 
-<!-- 引入 APlayer JavaScript 库 -->
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+    const memoriesLink = document.querySelector('#memoriesLink');
+    const formMask = document.querySelector('#formMask'); // 遮罩层
+    const formContainer = document.querySelector('.form-container'); // 表单容器
+    const closeBtn = document.querySelector('.form-close-btn'); // 关闭按钮
 
-<script>
-    // 使用 JavaScript 初始化 APlayer
-    const ap = new APlayer({
-        container: document.getElementById('aplayer'), // 指定播放器容器
-        autoPlay: true, // 是否自动播放，根据需要设置为 true 或 false
-        listFolded: false, // 列表是否折叠
-        fixed:true,
-        audio: [
-            {
-                name: '惊梦剧场', // 歌曲名称
-                artist: '享受此刻', // 歌手名称
-                url: 'bar.mp3', // 音乐文件的 URL 地址
-                cover: 'enjoy.jpg', // 封面图片的 URL 地址
-            },
-            // 可以根据需要添加更多歌曲
-        ],
+    memoriesLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        formContainer.style.display = 'block';
+        formMask.style.display = 'block';
     });
-</script>
 
+    // 处理关闭按钮点击事件
+    closeBtn.addEventListener('click', () => {
+        formContainer.style.display = 'none';
+        formMask.style.display = 'none';
+    });
+
+    // 点击遮罩层也可以关闭表单和遮罩层
+    formMask.addEventListener('click', () => {
+        formContainer.style.display = 'none';
+        formMask.style.display = 'none';
+    });
+});
+
+      </script>
+      <script>
+        // 使用 JavaScript 初始化 APlayer
+        const ap = new APlayer({
+            container: document.getElementById('aplayer'), // 指定播放器容器
+            autoPlay: true, // 是否自动播放，根据需要设置为 true 或 false
+            listFolded: false, // 列表是否折叠
+            fixed:true,
+            audio: [
+                {
+                    name: '惊梦剧场', // 歌曲名称
+                    artist: '享受此刻', // 歌手名称
+                    url: 'bar.mp3', // 音乐文件的 URL 地址
+                    cover: 'enjoy.jpg', // 封面图片的 URL 地址
+                },
+                // 可以根据需要添加更多歌曲
+            ],
+        });
+    </script>
 </body>
 </html>
