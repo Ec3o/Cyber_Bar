@@ -223,32 +223,62 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-    const memoriesLink = document.querySelector('#memoriesLink');
-    const formMask = document.querySelector('#formMask'); // 遮罩层
-    const formContainer = document.querySelector('.form-container'); // 表单容器
-    const closeBtn = document.querySelector('.form-close-btn'); // 关闭按钮
+            const memoriesLink = document.querySelector('#memoriesLink');
+            const formMask = document.querySelector('#formMask'); // 遮罩层
+            const formContainer = document.querySelector('.form-container'); // 表单容器
+            const closeBtn = document.querySelector('.form-close-btn'); // 关闭按钮
+            const submitBtn = document.querySelector('.form-submit-btn'); // 获取提交按钮
 
-    memoriesLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        formContainer.style.display = 'block';
-        formMask.style.display = 'block';
-    });
+            memoriesLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                formContainer.style.display = 'block';
+                formMask.style.display = 'block';
+            });
 
-    // 处理关闭按钮点击事件
-    closeBtn.addEventListener('click', () => {
-        formContainer.style.display = 'none';
-        formMask.style.display = 'none';
-    });
+            // 处理关闭按钮点击事件
+            closeBtn.addEventListener('click', () => {
+                formContainer.style.display = 'none';
+                formMask.style.display = 'none';
+            });
 
-    // 点击遮罩层也可以关闭表单和遮罩层
-    formMask.addEventListener('click', () => {
-        formContainer.style.display = 'none';
-        formMask.style.display = 'none';
-    });
-});
+            // 点击遮罩层也可以关闭表单和遮罩层
+            formMask.addEventListener('click', () => {
+                formContainer.style.display = 'none';
+                formMask.style.display = 'none';
+            });
 
-      </script>
-      <script>
+            // 拦截表单提交
+            submitBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // 阻止表单默认提交行为
+                const user = document.getElementById('email').value;
+                const message = document.getElementById('textarea').value;
+                const currentTime = new Date().toISOString();
+
+                fetch('http://127.0.0.1:8080', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user: user,
+                        message: message,
+                        time: currentTime,
+                    }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        formContainer.style.display = 'none';
+                        formMask.style.display = 'none';
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    </script>
+
+    <script>
         // 使用 JavaScript 初始化 APlayer
         const ap = new APlayer({
             container: document.getElementById('aplayer'), // 指定播放器容器
